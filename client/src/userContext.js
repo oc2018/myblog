@@ -6,8 +6,7 @@ export const UserContextProvider = ({ children }) => {
     const [userInfo, setUserInfo] = useState({});
     const [postInfo, setPostInfo] = useState([]);
     const [currentId, setCurrentId] = useState('')
-    
-    
+   
 
     return (
         <UserContext.Provider value={{ userInfo, setUserInfo, postInfo, setPostInfo, currentId, setCurrentId }}>
