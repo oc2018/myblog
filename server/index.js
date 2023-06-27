@@ -9,7 +9,7 @@ import postRoutes from  './routes/postRoutes.js';
 
 const app = express();
 dotenv.config();
-app.use(cors({ credentials: true, origin: 'https://myblog-iz43.vercel.app' }));
+app.use(cors({ credentials: true, origin: '*' }));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -26,3 +26,4 @@ const port = process.env.PORT || 3000;
 mongoose.connect( process.env.DATABASE_CONNECTION, { useUnifiedTopology: true, useNewUrlParser: true})
 .then(()=>app.listen(port, console.log(`Server listening on port http://localhost:${port}/test`)))
 .catch((error) => console.log(error.message));
+
