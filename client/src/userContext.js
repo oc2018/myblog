@@ -17,12 +17,11 @@ export const UserContextProvider = ({ children }) => {
     
 }
 
-export const baseUrl = 'https://myblog-five-sepia.vercel.app/'
+export const baseUrl = 'https://myblog-five-sepia.vercel.app'
 
 export const fetchData = async( url, options ) => {
     try {
        const data = await fetch(`${ baseUrl }/${url}`,  options )
-    //    console.log( data )
         return data;
     } catch (error) {
         console.log(error);        
