@@ -1,0 +1,379 @@
+* {
+    text-decoration: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    color: #222;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+img {
+    max-width: 100%;
+}
+
+.post {
+    padding: 10px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+}
+
+header a {
+    text-decoration: none;
+    color: inherit;
+}
+
+header a.logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+header nav {
+    display: flex;
+    gap: 15px;
+}
+
+.close {
+    position: relative;
+    float: right;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.avatar {
+    width: 15px;
+}
+
+.post {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.post .content h2 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.post .info {
+    margin: 6px 0;
+    color: #888;
+    font-size: .7rem;
+    font-weight: 600;
+    display: flex;
+    gap: 10px;
+}
+
+.post .info a.author {
+    color: #333;
+}
+
+.post .info .summary {
+    margin: 10px 0;
+    line-height: 1.4rem;
+}
+
+.headerContent {
+    display: flex;
+    flex-direction: column;
+    font-size: .8rem;
+    max-width: 900px;
+    margin: 20px 0;
+    width: 100%;
+    padding: 0 10px;
+    justify-content: space-between;
+    /* margin-bottom: 20px; */
+}
+
+.headerContent nav {
+    display: flex;    
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+}
+
+.headerContent nav .user {
+    display: flex;
+    align-items: baseline;
+    gap: .3rem;
+}
+
+.headerContent button {
+    background-color: #ddd;
+    outline: none;
+    border: none;
+    padding: .35rem .75rem;
+    border-radius: 6px;
+    color: #f36d33;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.headerContent button:hover {
+    transform: scale(1.03);
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.login {
+    position: relative;
+    text-align: right;
+}
+
+.form {
+    margin: 0 auto;
+}
+
+.form.login {
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 60vh;
+    padding: 2rem;
+}
+
+.close {
+    position: relative;
+    text-align: right;
+    padding: 1rem;
+    color: #00f;
+}
+
+.form form button {
+    margin-top: 10px;
+    width: 100%; 
+    cursor: pointer;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    background-color: #555;
+    border: none;
+}
+
+.form input, .form button, .form textarea, .btn {
+    display: block;
+    margin-bottom: 5px;
+    width: 100%;
+    padding: 5px 7px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    /* background-color: #fff; */
+}
+
+.switch {
+    color: #00f;
+    border: none ;
+    outline: none;
+    background: #ddd;
+    font-size: .8rem ;
+    font-weight: 400 ;
+}
+
+.loginHeader {
+    text-align: center;
+}
+
+.form .create_article {
+    display: flex;
+    padding: 5px 0px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+section .articleBtns {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 1rem;
+    padding:  20px 0;
+}
+
+section .articleBtns .edit {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+}
+
+section .articleBtns .edit .btn {
+    font-weight: 700;
+    cursor: pointer;
+}
+
+section .articleBtns .edit .btn.editBtn {
+    background-color: #777;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+section .articleBtns .edit.btn.editBtn:hover {
+    background-color: #444;
+    color: #fff;
+}
+
+section .articleBtns .close {
+    display: flex;
+    width: 3rem;
+    background-color: #888;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    color: #fff;
+}
+
+.postDetails {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.postDetails p {
+    color: #aaa;
+    font-size: .8rem;   
+    font-weight: 400; 
+}
+
+.article .container .image {
+    max-height: 200px;
+    display: flex;
+    overflow: hidden;
+    margin: 3rem 0;
+}
+
+.article.container.image img {
+   object-fit: cover;
+   object-position: center center;
+}
+
+.article .container .content {
+    max-width: 900px;
+}
+
+.article .container .content a {
+    color: #333;
+    text-decoration: underline;
+    line-height: 1.6rem;
+}
+
+.article h1 {
+    text-align: center;
+}
+
+.article-btns {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 2rem;
+}
+
+.edit-btn {
+    background-color: #999;
+    display: inline-flex;
+    gap: 5px;
+    align-items: center;
+    color: #fff;
+    padding: .25rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-btn {
+    background-color: #ddd;
+    display: inline-flex;
+    gap: 5px;
+    align-items: center;
+    color: #f36d33;
+    padding: .25rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+button svg {
+    height: 20px;
+}
+
+.home {
+    text-decoration: none;
+}
+
+
+
+
+
+pre {
+    color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-left: 3px solid #f36d33;
+    background: #222;
+    page-break-inside: avoid;
+    font-family: monospace;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1em 1.5em;
+    display: block;
+    word-wrap: break-word;
+}
+
+@media screen and (min-width: 600px) {
+    .post {
+        grid-template-columns: 0.9fr 1.1fr;
+    }
+
+    section {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        flex-direction: column;
+        padding: 1rem 10rem 3rem 10rem;
+    }
+
+    .headerContent {
+        display: flex;
+        flex-direction: row;
+        padding: 0 2rem;
+        font-size: 1rem;
+        width: 100%;
+    }
+
+    .headerContent nav .logout {
+        text-transform: uppercase;
+    }
+
+}

@@ -1,0 +1,8 @@
+## ignore node modules for the dependencies
+/node_modules
+
+## ignore environment variables
+.env
+
+## ignore api tests files
+*.http
