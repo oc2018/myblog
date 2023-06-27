@@ -34,10 +34,8 @@ const Article = () => {
             console.log(error)
         }
 
-    }, [id ]);
+    }, [ id ]);
 
-
-    // console.log(id);
 
     const handleEdit = (e) => {
         e.preventDefault();

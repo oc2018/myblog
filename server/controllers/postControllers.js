@@ -80,11 +80,12 @@ export const updatePost = async(req, res) => {
         if(img) {
             
             const uploadRes = await cloudinary.uploader.upload(img, { upload_preset: 'erics_blog_photos'});
+            console.log('image uploaded')
 
             if(uploadRes) {
 
                 const updatedPost = await PostMessage.findByIdAndUpdate( _id, { ...post, img: uploadRes, _id }, { new: true });
-         
+                
                 console.log('success')
                 res.status(200).json(updatedPost);
             }
