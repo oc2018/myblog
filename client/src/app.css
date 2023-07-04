@@ -71,6 +71,19 @@ header nav {
     gap: 20px;
 }
 
+.post .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.readMore {
+    display: flex;
+    color: #777;
+    margin-bottom: 10px;
+}
+
 .post .content h2 {
     margin: 0;
     font-size: 1.8rem;

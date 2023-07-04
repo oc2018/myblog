@@ -3,7 +3,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 
 import { Loading } from '../components';
 import { dateFormatter } from '../utils/dateFormatter';
-import { UserContext, fetchData } from '../userContext'; 
+import { UserContext, fetchData, baseUrl } from '../userContext'; 
 
 const Article = () => {
     const { id } = useParams();
@@ -11,8 +11,6 @@ const Article = () => {
     const [post, setPost] = useState(null)
 
     const navigate = useNavigate();
-
-    // console.log(userInfo.id, post?.author._id);
 
     const options = {
         method: 'GET',
@@ -23,7 +21,6 @@ const Article = () => {
     useEffect(()=> {
         try {
             if(id){
-                // setCurrentId( id );
                 fetchData(`posts/${ id }`, options )
                 .then(res => res.json()
                 .then(postData => {
@@ -91,7 +88,7 @@ const Article = () => {
                         </div>
                     )}
                     <div className="image">
-                        <img src={post?.img?.url} alt={`${ post.title }`} />
+                        <img src={`${baseUrl}/${post?.img}`} alt={`${ post.title }`} />
                     </div>
                     <div className="content">
                         <div dangerouslySetInnerHTML={{ __html: post?.content}} />

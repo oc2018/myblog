@@ -17,7 +17,7 @@ export const UserContextProvider = ({ children }) => {
     
 }
 
-export const baseUrl = 'https://myblog-five-sepia.vercel.app'
+export const baseUrl = 'http://localhost:4000'
 
 export const fetchData = async( url, options ) => {
     try {

@@ -1,5 +1,6 @@
 ## ignore node modules for the dependencies
 /node_modules
+/uploads
 
 ## ignore environment variables
 .env

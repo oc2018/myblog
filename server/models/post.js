@@ -3,7 +3,7 @@ import mongoose, { Schema } from 'mongoose';
 const postSchema = mongoose.Schema({
     title: { type: String, required: true },
     summary: { type: String, required: true },
-    img: { type: Object },
+    img: { type: String },
     content: { type: String, required: true},
     author: { type: Schema.Types.ObjectId, ref: 'BlogUser' }
 

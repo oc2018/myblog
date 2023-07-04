@@ -1,54 +1,40 @@
-import React, { useEffect, useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { UserContext, fetchData } from '../userContext';
-import { Loading } from '../components';
 import { dateFormatter } from '../utils/dateFormatter';
+import { Loading } from '../components';
+import { baseUrl } from '../userContext';
 
-const Post = () => {
-  const { postInfo, setPostInfo } = useContext(UserContext);
-
-  const options =  {
-    method: 'GET',
-    headers: {'Content-Type':'application/json'}
-  }
-  useEffect(()=> {
-  
-    try {
-      fetchData(`posts`, options )
-      .then(response => response.json())
-        .then( postInfo => {
-          setPostInfo(postInfo);
-        })
-      
-    } catch (error) {
-
-      console.log(error);
-
-    }
-  }, [])
+const Post = ({ post }) => {
+  // console.log(`${baseUrl}/${post?.img}`)
 
   return (
     <>
-    { !postInfo ? <Loading /> : postInfo.map(post => (
-      <div key={post._id} >
-        <Link to={`/article/${post._id}`}>
-          <div className="post">
-            <div className="img">
-                <img src={post.img.url} alt="pic" />
-            </div>
-            <div className="content">
-                <h3>{ post.title }</h3>
-                <div className="info">
+      {!post ? <Loading /> : (
+        <div >
+          <Link to={`/article/${post._id}`}>
+            <div className="post">
+              <div className="img">
+                  <img src={`${baseUrl}/${post?.img}`} alt="pic" />
+              </div>
+              <div className="content">
+                <div className="summary">
+                  <h3>{ post.title }</h3>
+                  <div className="info">
                     <p className="author">{ post?.author?.username }</p>
                     <time>{ dateFormatter(post.createdAt) }</time>
+                  </div>
+                  <p className='summary'>{ post.summary }</p>
                 </div>
-                <p className='summary'>{ post.summary }</p>
+                <div className="readMore">
+                  Read Article...
+                </div>
+              </div>
             </div>
-          </div>
-        </Link>
-      </div>
-    )) }
+          </Link>
+        </div>
+
+      )}
     </>
   )
 }
