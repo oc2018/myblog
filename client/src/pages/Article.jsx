@@ -45,7 +45,8 @@ const Article = () => {
         let confirm = window.confirm('Are you sure you want to delete this Article?');
         if(confirm){
             fetchData(`posts/${ id }`, {
-                method: 'DELETE',            
+                method: 'DELETE',    
+                credentials: 'include'        
             })
         } else {
             return;

@@ -132,13 +132,11 @@ export const deletePost = async(req, res) => {
             if (isAuthor) {
 
                 const success = await PostMessage.findByIdAndDelete( _id );
+                res.status(200).json({ message: success });
             }
 
         })
 
-
-
-        res.status(200).json({ message: success });
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: error.message });
