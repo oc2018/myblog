@@ -1,12 +1,20 @@
 import mongoose from "mongoose";
 import PostMessage from "../models/post.js";
-// import cloudinary from "../utils/cloudinary.js";
+import cloudinary from "../utils/cloudinary.js";
 import Jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import fs from 'fs';
+import streamifier from 'streamifier';
 
 
 dotenv.config();
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_NAME,
+    api_key: process.env.CLOUDINARY_API,
+    api_secret: process.env.CLOUDINARY_SECRET,
+    secure: true,
+})
 
 export const getPost = async(req, res) => {
 
@@ -39,27 +47,28 @@ export const getPosts = async(req, res) => {
 }
 
 export const createPost = async(req, res) => {
+
+    // console.log(req.file)
     
     try {
-        const { originalname, path } = req.file;
-        const ext = originalname.split('.')[originalname.split('.').length -1];
-        const newName = `${path}.${ext}`;
-        fs.renameSync(path, newName);
-
         const { title, summary, content } = req.body;
         const { token } = req.cookies;
 
         Jwt.verify(token, process.env.JWT_SECRET, {}, async(err, info)=> {
             if (err) return res.status(400).json({ message: 'Invalid token' });
+
+            const uploadRes = await cloudinary.uploader.upload_stream({ folder: 'uploads' }, async(error, result) => {
+                if(error) return console.error(error);
+                if(result){
+                    
+                    const newPost = await new PostMessage({ title, summary, img: result.url, content, author: info._id });
             
-            if(newName){
-    
-                const newPost = await new PostMessage({ title, summary, img: newName, content, author: info._id });
-        
-                await newPost.save();
-        
-                res.status(200).json(newPost);
-            }            
+                    await newPost.save();
+            
+                    res.status(200).json(newPost);
+                }            
+            });
+            streamifier.createReadStream(req.file.buffer).pipe(uploadRes);
             
         })
 
@@ -70,16 +79,16 @@ export const createPost = async(req, res) => {
 }
 
 export const updatePost = async(req, res) => {
-    let newName;
+    // let newName;
 
-    if (req.file) {
+    // if (req.file) {
         
-        const { originalname, path } = req.file;
-        const ext = originalname.split('.')[originalname.split('.').length - 1];
-        newName = `${path}.${ext}`;
-        fs.renameSync(path, newName);
+    //     const { originalname, path } = req.file;
+    //     const ext = originalname.split('.')[originalname.split('.').length - 1];
+    //     newName = `${path}.${ext}`;
+    //     fs.renameSync(path, newName);
     
-    }
+    // }
 
     const {title, summary, content } = req.body;
     const { token } = req.cookies;
@@ -93,17 +102,28 @@ export const updatePost = async(req, res) => {
             if (err) return res.status(400).json({ message: 'Invalid token' });
             const isAuthor = JSON.stringify(postData.author) === JSON.stringify(info._id)
             
-            
+            const uploadRes = await cloudinary.uploader.upload_stream({ folder: 'uploads' }, async(error, result) => {
+                if(error) return console.error(error);
+                if(result){
 
-             if(isAuthor) {
-
-                    const updatedPost = await PostMessage.findByIdAndUpdate( _id, { title, summary, content, img: newName ? newName : postData.img, _id }, { new: true });
-
-                    res.status(200).json(updatedPost);
-                } else {
-                    res.status(403).json({ message: 'You are not allowed to edit this post. Only the author can edit' });
+                if(isAuthor) {
+                
+                        const updatedPost = await PostMessage.findByIdAndUpdate( _id, { title, summary, content, img: result.url ? result.url : postData.img, _id }, { new: true });
+                
+                        res.status(200).json(updatedPost);
+                    } else {
+                        res.status(403).json({ message: 'You are not allowed to edit this post. Only the author can edit' });
+                    }
+                
                 }
+            
+            });
+
+            streamifier.createReadStream(req.file.buffer).pipe(uploadRes);
+
         });
+
+        
         
     } catch (error) {
         console.error( error.message || error );

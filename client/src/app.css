@@ -389,4 +389,8 @@ pre {
         text-transform: uppercase;
     }
 
+    .readMore {
+        line-height: 50px;
+    }
+
 }

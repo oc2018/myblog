@@ -15,7 +15,7 @@ const Post = ({ post }) => {
           <Link to={`/article/${post._id}`}>
             <div className="post">
               <div className="img">
-                  <img src={`${baseUrl}/${post?.img}`} alt="pic" />
+                  <img src={`${post?.img}`} alt="pic" />
               </div>
               <div className="content">
                 <div className="summary">

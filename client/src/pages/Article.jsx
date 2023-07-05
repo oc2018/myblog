@@ -89,7 +89,7 @@ const Article = () => {
                         </div>
                     )}
                     <div className="image">
-                        <img src={`${baseUrl}/${post?.img}`} alt={`${ post.title }`} />
+                        <img src={`${post?.img}`} alt={`${ post.title }`} />
                     </div>
                     <div className="content">
                         <div dangerouslySetInnerHTML={{ __html: post?.content}} />
