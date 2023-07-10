@@ -41,7 +41,7 @@ export const login =  async (req,res)=> {
     
         const token = Jwt.sign({ _id: isExistingUser._id, user: isExistingUser.username, email: isExistingUser.email }, salt, { expiresIn: '1h' } );
 
-        res.status(200).cookie( 'token', token ).json({
+        res.status(200).cookie( 'token', token, { sameSite: 'none', secure: true }).json({
             id: isExistingUser._id,
             user: isExistingUser.username,
         });        
