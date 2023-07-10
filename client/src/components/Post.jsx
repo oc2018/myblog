@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { dateFormatter } from '../utils/dateFormatter';
 import { Loading } from '../components';
-import { baseUrl } from '../userContext';
+// import { baseUrl } from '../userContext';
 
 const Post = ({ post }) => {
   // console.log(`${baseUrl}/${post?.img}`)

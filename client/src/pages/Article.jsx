@@ -53,6 +53,7 @@ const Article = () => {
         }
         // .then(res => console.log(res));
         setCurrentId('');
+        console.log('deleted');
         navigate('/');
     }
     

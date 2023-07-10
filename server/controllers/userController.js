@@ -54,7 +54,10 @@ export const login =  async (req,res)=> {
 export const profile = (req, res) => {
     const { token } = req.cookies;
     Jwt.verify(token, process.env.JWT_SECRET, {}, (err, info)=> {
-        if (err) return res.status(400).json({ message: 'Invalid token' });
+        if (err){
+
+            return res.status(400).json({ message: 'Invalid token' });
+        } 
         res.status(200).json(info);
     });
 };
