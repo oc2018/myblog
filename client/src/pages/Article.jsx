@@ -54,7 +54,7 @@ const Article = () => {
             return;
         }
         // .then(res => console.log(res));
-        console.log('deleted');
+        // console.log('deleted');
     }
     
   return (
