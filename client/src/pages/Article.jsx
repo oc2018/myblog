@@ -48,13 +48,13 @@ const Article = () => {
                 method: 'DELETE',    
                 credentials: 'include'        
             })
+            setCurrentId('');
+            navigate('/');
         } else {
             return;
         }
         // .then(res => console.log(res));
-        setCurrentId('');
         console.log('deleted');
-        navigate('/');
     }
     
   return (
